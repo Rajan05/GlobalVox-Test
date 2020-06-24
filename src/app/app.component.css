@@ -1,0 +1,210 @@
+.super-div {
+  background-color: orange;
+  background-size: 100%;
+  height: 100vh;
+  font-family: Arial;
+}
+
+.pull-right {
+  float: right;
+}
+
+.time-zone-drop-down {
+  padding: 10px;
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 2px;
+  overflow-y: scroll;
+  border-color: white;
+}
+
+.form-div-class {
+  width: 650px;
+  background-color: white;
+  color: black;
+  margin: auto;
+  position: relative;
+  top: 30px;
+  padding-bottom: 6px;
+}
+
+.div-create-meeting {
+  cursor: pointer; 
+  color: white;
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.div-view-meeting {
+  cursor: pointer; 
+  color: white; 
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.label-class {
+  width: 30%;
+}
+
+.info-icon {
+  margin-left: 8px;
+}
+
+.input-full-name {
+  width: 68%;
+  display: inline-block;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+.time-label {
+  display: inline-block;
+  padding-top: 20px;
+}
+
+.create-div {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 110px;
+  height: 40px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background-color: #B2B2B0;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border-radius: 18px;
+  left: 5px;
+  top: 5px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #15C36F;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(70px);
+  -ms-transform: translateX(70px);
+  transform: translateX(70px);
+}
+
+.text {
+  color: white;
+}
+
+.text:after {
+  position: absolute;
+  top: 7px;
+  left: 52px;
+  content: "Hindi";
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.text:before {
+  position: absolute;
+  top: 7px;
+  left: 14px;
+  content: "English";
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hide-margin {
+  margin: 10px;
+}
+
+input+.slider+.text:after {
+  opacity: 1;
+}
+
+input+.slider+.text:before {
+  opacity: 0;
+}
+
+input:checked+.slider+.text:after {
+  opacity: 0;
+}
+
+input:checked+.slider+.text:before {
+  opacity: 1;
+}
+
+.spinner {
+  position: fixed;
+  top: 170px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.table-first-name-width {
+  width: 50%;
+}
+
+.table-meeting-date-width {
+  width: 24%;
+}
+
+.table-date-width {
+  width: 8%;
+}
+
+.table {
+  margin-bottom: 0px;
+}
+
+.calendar-img {
+  width: 24px;
+  height: 24px;
+}
+
+.empty-meeting-list {
+  text-align: center;
+  height: 250px;
+  top:50%;
+  left: 25%;
+  position: absolute;
+}

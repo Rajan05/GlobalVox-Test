@@ -1,0 +1,94 @@
+<div class="super-div">
+  <select class="pull-right time-zone-drop-down" (change)="updateTimeZone($event.target.value)">
+    <option *ngFor="let date of timeZoneList" value="{{date}}">{{date}}</option>
+  </select>
+
+  <label class="switch" style="margin-top: 10px;margin-left: 10px;">
+    <input class="hide-margin" (click)="updateLanguage()" type="checkbox" *ngIf="isHindi">
+    <input class="hide-margin" checked (click)="updateLanguage()" type="checkbox" *ngIf="!isHindi">
+    <div class="slider"></div>
+    <div class="text"></div>
+  </label>
+
+  <div class="form-div-class">
+    <div style="width: 100%;">
+      <div class="div-create-meeting" [style.background-color]="!isShowMeetingData ? '#007bff' : 'gray'"
+        (click)="isShowMeetingData = false" i18n>
+        Create Meeting
+      </div>
+      <div class="div-view-meeting" [style.background-color]="isShowMeetingData ? '#007bff' : 'gray'"
+        (click)="isShowMeetingData = true; getMeetingData();" i18n>
+        View Meetings
+      </div>
+    </div>
+    <img class="spinner" *ngIf="!isDataAvailable" src="./../assets/images/giphy.webp" />
+    <div *ngIf="isDataAvailable">
+      <div class="create-div" *ngIf="!isShowMeetingData">
+        <form #loginform="ngForm" (submit)="addMeeting(loginform.value)">
+          <div style="margin-bottom: 14px;margin-top: 14px;">
+            <label i18n="@@fullName" class="label-class">Full Name</label>
+            <input class="form-control input-full-name" placeholder="Full Name" name="fullName" [ngModel]="name">
+          </div>
+          <div style="margin-bottom: 14px;">
+            <div>
+              <label i18n="@@meetingDate" class="label-class">Meeting Date</label>
+              <div style="display: inline-flex;">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="meetingDate" 
+                autocomplete="off" [ngModel]="meetingDate" readonly ngbDatepicker #d="ngbDatepicker"/>
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                  <img src="./assets/images/calendar-icon.svg" height="18px" width="18px"/>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div style="margin-bottom: 14px;">
+            <label i18n="@@startTime" class="label-class">Start Time</label>
+            <ngb-timepicker class="display-inline-block" [(ngModel)]="stime" name="startTime" [spinners]="isSpinner">
+            </ngb-timepicker>
+            <img src="./assets/images/info.png" class="info-icon" height="18px" width="18px"
+              [ngbPopover]="popContent" triggers="mouseenter:mouseleave">
+          </div>
+          <div style="margin-bottom: 14px;">
+            <label i18n="@@endTime" class="label-class">End Time</label>
+            <ngb-timepicker class="display-inline-block" [(ngModel)]="etime" name="endTime" [spinners]="isSpinner">
+            </ngb-timepicker>
+            <img src="./assets/images/info.png" class="info-icon" height="18px" width="18px"
+              [ngbPopover]="popContent" triggers="mouseenter:mouseleave">
+          </div>
+          <div style="text-align: center;">
+          <button class="btn btn-primary" style="width: 30%;" type="submit" i18n>Add Meeting</button>
+        </div>
+        </form>
+      </div>
+      <div *ngIf="isShowMeetingData" style="height: 460px;"
+        [style.overflow-y]="listOfMeetingTimeZoneWise.length > 5 ? 'scroll': 'none'">
+        <table class="table table-striped" *ngIf="!isEmptyMeetingList">
+          <thead>
+            <tr>
+              <th scope="col" class="table-first-name-width" i18n="@@fullName">Full Name</th>
+              <th scope="col" class="table-meeting-date-width" i18n="@@meetingDate">Meeting Date</th>
+              <th scope="col" class="table-date-width" i18n="@@startTime">Start Time</th>
+              <th scope="col" class="table-date-width" i18n="@@endTime">End Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let meetingData of listOfMeetingTimeZoneWise.slice().reverse()">
+              <td class="table-first-name-width">{{meetingData.fullName}}</td>
+              <td class="table-meeting-date-width">{{meetingData.date.year}}-{{meetingData.date.month}}-{{meetingData.date.day}}</td>
+              <td class="table-date-width">{{meetingData.startTime.hour}}:{{meetingData.startTime.minute}}</td>
+              <td class="table-date-width">{{meetingData.endTime.hour}}:{{meetingData.endTime.minute}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="empty-meeting-list" *ngIf="isEmptyMeetingList">Sorry We couldn't find meeting data.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #popContent>
+  <div class="pop-content">
+      <span>
+        Hour > 24 or Minute > 60 will automatically converted to its respective range.
+      </span>
+  </div>
+</ng-template>
